@@ -1,7 +1,7 @@
 {
   "name": "claude-review-support",
   "description": "Turns Claude Code into a specialist in pull-request review, project-state analysis, and security review — driven by a parallel subagent swarm on the strongest model.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Yef",
     "url": "https://github.com/Yefclub"
