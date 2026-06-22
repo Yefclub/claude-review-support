@@ -22,6 +22,7 @@ Classify PRs: ready-to-merge / awaiting-review / changes-requested / CI-failing 
 - **Dependency & supply-chain posture:** if available, run `npm audit` / `pip-audit` / `osv-scanner` / `trivy fs` read-only; summarize outdated and vulnerable deps. Or spawn `dependency-supply-chain-reviewer` on the manifests.
 - **Security posture:** spot-check for committed secrets (`gitleaks detect` if installed), missing branch protection / unpinned CI actions, absent `SECURITY.md`.
 - **Architecture hotspots:** spawn `architecture-reviewer` in repo mode to name the riskiest coupling/drift and tech-debt centers.
+- **House-rules drift:** if the repo ships a `CLAUDE.md`/`AGENTS.md`/`CONTRIBUTING.md`, spawn `house-rules-reviewer` over recent merged diffs to catch changes that violated the project's own hard rules.
 - **CI health:** flaky/failing workflows, slowest jobs.
 
 ## Stage 3 — Synthesize

@@ -6,6 +6,18 @@ All notable changes to this project are documented here. Format based on
 
 ## [Unreleased]
 
+### Added
+- `verify-closure` skill — verifies whether merged PRs actually closed a prior audit/issue, with a per-finding verdict (FIXED/PARTIAL/NOT_FIXED/REGRESSED) and a regression hunt over the fix diffs.
+- `house-rules-reviewer` agent — reviews a diff against the target repo's own contract (CLAUDE.md/CONTRIBUTING/AGENTS.md/.cursorrules); wired into `review-pr` and `project-state`.
+- `review-pr` optional output mode: open a tracking issue with a P0/P1 checklist.
+
+### Changed
+- `review-pr-stack` — added a Stage 0 scale/cost guard (group/sample/Workflow above ~20 PRs).
+- `finding-verifier` — corroborate findings by running cheap read-only checks (`tsc --noEmit`, the relevant test, `prisma migrate diff`).
+- `correctness-reviewer` — added refactor/extraction regression checks.
+- `test-quality-reviewer` — flag tests that cement current buggy behavior.
+- docs/usage.md — Windows/PowerShell encoding footgun note.
+
 ## [0.1.0] — 2026-06-22
 
 Initial release.

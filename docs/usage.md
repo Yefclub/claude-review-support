@@ -80,3 +80,15 @@ Instale Semgrep, Gitleaks, OSV-Scanner, Trivy, etc. para corroborar o review de 
 
 Os hooks ficam em `hooks/hooks.json`. Remova a entrada correspondente (ou ajuste as regras em
 `hooks/guard-bash.mjs` / `guard-sensitive-read.mjs`) e rode `/reload-plugins`.
+
+## Encoding no Windows/PowerShell (footgun)
+
+Ao publicar texto com acentos ou emoji (review, comentário, issue), **nunca** passe o conteúdo por
+`Get-Content`/`Set-Content` nem inline pelo PowerShell — ele re-encoda o UTF-8 e gera mojibake (acentos
+quebrados). Sempre **escreva o arquivo** (ferramenta Write) e use `--body-file`:
+
+```bash
+gh pr comment <PR> --body-file review.md
+gh issue create --title "..." --body-file issue.md
+```
+

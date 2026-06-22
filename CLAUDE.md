@@ -34,6 +34,7 @@ Do **not** assume what the user wants. Greet briefly, state what this toolkit do
 | **Review a PR stack** | Review a sequence/stack of dependent PRs, each against its own base | `review-pr-stack` |
 | **Security review** | Deep, OWASP-2025 security audit of a diff or the whole repo | `security-review` |
 | **Project state** | Health snapshot: PRs, CI, issues, stale branches, dependency & security posture | `project-state` |
+| **Verify closure** | Did the merged PRs that claim to fix a prior audit/issue actually close it? Per-finding verdict | `verify-closure` |
 
 If the user's first message already names a target (e.g. "review PR #42"), skip the menu and route directly.
 
@@ -76,6 +77,7 @@ For an exhaustive, unbounded audit, tell the user they can say **"use a workflow
 | `review-pr-stack` | Review a chain of dependent/stacked PRs in order. |
 | `security-review` | Security-only audit of a diff or the whole repository. |
 | `project-state` | Snapshot the overall health and risk posture of a repo. |
+| `verify-closure` | Check whether merged fix PRs actually closed a prior audit/issue (per-finding verdict). |
 
 Skills prefer the `gh` CLI for GitHub access (no extra setup). The GitHub MCP server is optional — see `.mcp.json.example`.
 

@@ -8,6 +8,14 @@ allowed-tools: Read, Grep, Glob, Bash, Task, AskUserQuestion
 
 Stacked PRs each build on the one below. The golden rule: **review each PR against its own base**, so you only see what that layer introduces — not the whole tower.
 
+## Stage 0 — Scale & cost
+Per-PR fan-out (swarm + verifier) has no ceiling. Count the PRs first. **Above ~20 PRs**, surface the cost and offer:
+- (a) group by theme and review a representative PR per group,
+- (b) sample the highest-risk PRs (large diffs; auth / money / data-migration paths),
+- (c) escalate to the Workflow tool (loop-until-dry) for an exhaustive run — only on explicit "use a workflow".
+
+Never silently fan a swarm over hundreds of PRs — a ~200-PR stack is millions of tokens.
+
 ## Stage 1 — Establish the order
 Get the explicit list from the user, or enumerate:
 ```bash

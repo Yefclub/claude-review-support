@@ -19,6 +19,7 @@ want**, and runs a real review — not a shallow summary.
 - **PR stack review** — a sequence of dependent PRs, each reviewed against its own base.
 - **Security review** — security audit (diff or whole repo) on the **OWASP 2025** taxonomy, with adversarial false-positive filtering.
 - **Project state** — a health snapshot: PRs, CI, issues, stale branches, dependency & security posture.
+- **Closure verification** — did the (usually already merged) PRs that claim to fix a prior audit/issue actually close it? Per-finding verdict: `FIXED / PARTIAL / NOT_FIXED / REGRESSED`.
 
 Under the hood: a **four-stage swarm pipeline** — skip-gate → fan-out by lens (parallel) → adversarial
 verification (drops confidence < 8) → synthesis + verdict. See [docs/architecture.md](docs/architecture.md).

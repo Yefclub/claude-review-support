@@ -23,8 +23,9 @@ You are given one finding: its claim, the `file:line`, and the proposed impact/f
    - The "bug" being intended behavior, or already handled elsewhere.
    - A framework that makes it safe (e.g. parameterized queries, auto-escaping templates, memory-safe language).
    - The cited line/behavior not matching reality (hallucinated finding).
-3. **Build the proof.** If it's real, state the exact trigger (input + path). If you can't construct one, it is not confirmed.
-4. **Calibrate.** Be honest. A finding you merely "can't fully disprove" is not an 8.
+3. **Corroborate by executing when cheap and read-only.** An empirical check beats reading code: run `tsc --noEmit`, the single relevant test file, or `prisma migrate diff --exit-code` (non-destructive). Use an ephemeral DB, never a real one — the bash guard already permits these and blocks destructive variants.
+4. **Build the proof.** If it's real, state the exact trigger (input + path). If you can't construct one, it is not confirmed.
+5. **Calibrate.** Be honest. A finding you merely "can't fully disprove" is not an 8.
 
 ## Output (exactly this)
 ```

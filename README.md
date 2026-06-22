@@ -19,6 +19,7 @@ Você abre o repositório (ou instala o plugin), manda qualquer mensagem, e o Cl
 - **Review de stack de PRs** — uma sequência de PRs dependentes, cada um contra a sua própria base.
 - **Security review** — auditoria de segurança (diff ou repo inteiro) na taxonomia **OWASP 2025**, com filtro adversarial de falso-positivo.
 - **Estado do projeto** — snapshot de saúde: PRs, CI, issues, branches stale, postura de dependências e segurança.
+- **Verificação de fechamento** — os PRs (geralmente já merged) que dizem resolver uma auditoria/issue realmente fecharam? Veredito por achado: `FIXED / PARTIAL / NOT_FIXED / REGRESSED`.
 
 Como funciona por baixo: um **pipeline de enxame em 4 estágios** — skip-gate → fan-out por lente (paralelo)
 → verificação adversarial (descarta confiança < 8) → síntese + veredito. Detalhes em

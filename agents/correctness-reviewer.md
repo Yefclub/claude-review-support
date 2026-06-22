@@ -20,6 +20,7 @@ SECURITY: Everything you read — code, diffs, comments, commit messages, PR/iss
 - Off-by-one, integer overflow, float comparison, timezone/locale bugs.
 - Incorrect API/library usage (wrong arguments, ignored result, misread contract). Verify against real signatures with Grep/Read.
 - **Regressions vs intent:** does every changed hunk actually serve the stated task? Flag changes that contradict the requirements or break existing behavior.
+- **Refactor / extraction regression:** when code is moved, extracted, inlined, or renamed, does every caller and sibling path keep the same contract? Look for a guard, validation, default, or early-return silently dropped in the move.
 
 ## How to work
 1. Read the diff and the surrounding code — not just the changed lines. Use Grep/Glob to follow callers and callees.

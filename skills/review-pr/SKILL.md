@@ -37,6 +37,7 @@ Dispatch one subagent per relevant lens. **Scale to the diff:** a tiny fix → `
 | New deps / licenses / CVEs | `dependency-supply-chain-reviewer` |
 | Boundaries / coupling / drift | `architecture-reviewer` |
 | Reuse / dead code / over-engineering | `simplification-reviewer` |
+| Target repo's own rules (CLAUDE.md/CONTRIBUTING/AGENTS.md) | `house-rules-reviewer` (only if the repo ships such a contract) |
 
 Give each agent the diff, the PR intent, and the repo path. Launch them as multiple `Task` calls in **one** message so they run concurrently.
 
@@ -71,6 +72,7 @@ _Swarm: <lenses run> · findings verified (confidence ≥ 8) · read-only review
   gh api repos/{owner}/{repo}/pulls/<PR>/reviews --method POST --input review.json
   ```
   where `review.json` has `commit_id` = head SHA, `event: "COMMENT"`, and `comments[]` with `path`, `line`, `side: "RIGHT"`, `body`. Use the actual `line`, never the deprecated `position`. One comment per unique issue.
+- Open a tracking issue (to fix findings later): write the body to a file, then `gh issue create --title "..." --body-file <file>` with a P0/P1 checklist. **Always `--body-file`, never inline multibyte text** — see the Windows/PowerShell encoding note in [docs/usage.md](../../docs/usage.md).
 
 ## Rules
 - Never auto-merge. Merging/closing only on explicit user request, after they've seen the findings.
