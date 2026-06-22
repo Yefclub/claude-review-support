@@ -7,10 +7,7 @@
     "url": "https://github.com/Yefclub"
   },
   "homepage": "https://github.com/Yefclub/claude-review-support",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Yefclub/claude-review-support"
-  },
+  "repository": "https://github.com/Yefclub/claude-review-support",
   "license": "MIT",
   "keywords": [
     "code-review",
