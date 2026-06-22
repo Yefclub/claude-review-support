@@ -1,0 +1,12 @@
+{
+  "//": "Optional. Copy to .mcp.json to enable the GitHub MCP server (inline-comment posting with automatic position mapping). The skills work without this using the `gh` CLI. Provide a token via the GITHUB_PERSONAL_ACCESS_TOKEN environment variable; never hardcode it here.",
+  "mcpServers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    }
+  }
+}

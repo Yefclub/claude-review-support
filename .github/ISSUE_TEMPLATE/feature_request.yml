@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest a new skill, agent lens, hook, or improvement.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What review/security/project-state need isn't met today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should it do? If it's a new skill/agent, sketch the inputs and output.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - New skill
+        - New agent lens
+        - New / changed hook
+        - Docs
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Fits the design principles
+      options:
+        - label: Stays read-only by default; no auto-merge; human gate on writes.
+          required: true
+        - label: Keeps high-signal output (adversarial verification before reporting).
+          required: true

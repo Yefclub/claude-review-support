@@ -1,0 +1,61 @@
+name: Validate plugin
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions: read-all
+
+jobs:
+  validate:
+    name: Structure & hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden the runner
+        uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 20
+
+      - name: Manifests are valid JSON
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/marketplace.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('hooks/hooks.json','utf8'))"
+
+      - name: Hooks pass a syntax check
+        run: for f in hooks/*.mjs; do node --check "$f"; done
+
+      - name: Skills and agents have required frontmatter
+        run: |
+          set -e
+          for f in skills/*/SKILL.md; do grep -q "description:" "$f" || { echo "Missing description in $f"; exit 1; }; done
+          for f in agents/*.md; do grep -q "^model:" "$f" || { echo "Missing model in $f"; exit 1; }; done
+          echo "frontmatter OK"
+
+      - name: Hooks behave (block dangerous, allow safe)
+        run: |
+          set -e
+          printf '{"tool_input":{"command":"rm -rf /tmp/x"}}' | node hooks/guard-bash.mjs | grep -q '"permissionDecision":"deny"'
+          out=$(printf '{"tool_input":{"command":"git diff"}}' | node hooks/guard-bash.mjs); test -z "$out"
+          printf '{"tool_input":{"file_path":".env"}}' | node hooks/guard-sensitive-read.mjs | grep -q '"permissionDecision":"deny"'
+          echo "hooks OK"
+
+      - name: Hygiene — no company/email identifiers
+        run: |
+          if grep -rniE 'grp''otencial|global[.]inovacao|grupo[[:space:]]potencial' --exclude-dir=.git --exclude='plugin-validate.yml' .; then
+            echo "::error::Forbidden identifier found (company/email). This repo must stay clean."
+            exit 1
+          fi
+          echo "hygiene OK"

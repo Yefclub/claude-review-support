@@ -1,0 +1,16 @@
+# Normalize line endings: repo stays LF, checkout is native.
+* text=auto
+
+# Scripts and configs the toolkit executes must be LF on every platform.
+*.mjs   text eol=lf
+*.js    text eol=lf
+*.sh    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+
+# Treat these as binary (no EOL munging).
+*.png binary
+*.jpg binary
+*.gif binary

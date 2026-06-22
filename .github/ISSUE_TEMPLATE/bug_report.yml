@@ -1,0 +1,47 @@
+name: Bug report
+description: Something in the toolkit misbehaves (a skill, agent, or hook).
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. **Do not** use this for security vulnerabilities — use
+        [private reporting](https://github.com/Yefclub/claude-review-support/security/advisories/new) instead.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Installed via ...
+        2. Ran ...
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Skill (review-pr / security-review / ...)
+        - Agent (a swarm reviewer / verifier)
+        - Hook (guard-bash / guard-sensitive-read / context / session-start)
+        - Install / packaging
+        - Docs
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Claude Code version, model/effort, install method (plugin vs --plugin-dir).
+      placeholder: "Windows 11 · Claude Code x.y · Opus · plugin install"
+    validations:
+      required: true

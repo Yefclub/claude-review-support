@@ -1,0 +1,15 @@
+Claude Review Support
+Copyright (c) 2026 Yef
+
+This product includes methodology adapted from third-party open-source work:
+
+- Anthropic "claude-code-security-review" (MIT License)
+  https://github.com/anthropics/claude-code-security-review
+  The security-review approach used in `agents/security-reviewer.md` and
+  `skills/security-review/SKILL.md` — the detect → adversarial false-positive
+  filtering → confidence-threshold pipeline, the OWASP category list, and the
+  exclusion/precedent rules — is adapted from that project. Used under the MIT
+  License. No affiliation or endorsement is implied.
+
+"Claude" and "Claude Code" are products of Anthropic. This is an independent,
+community project and is not affiliated with or endorsed by Anthropic.

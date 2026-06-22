@@ -1,0 +1,27 @@
+{
+  "name": "claude-review-support",
+  "description": "Turns Claude Code into a specialist in pull-request review, project-state analysis, and security review — driven by a parallel subagent swarm on the strongest model.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Yef",
+    "url": "https://github.com/Yefclub"
+  },
+  "homepage": "https://github.com/Yefclub/claude-review-support",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yefclub/claude-review-support"
+  },
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "pr-review",
+    "security",
+    "security-review",
+    "code-quality",
+    "subagents",
+    "swarm",
+    "claude-code",
+    "owasp",
+    "supply-chain"
+  ]
+}
